@@ -12,6 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopper">
         <activity
+            android:name=".ShoppingSelectLocation"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingDeliveryAddress"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingViewProduct"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingCart"
+            android:exported="false" />
+        <activity
+            android:name=".HomeNotificationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeSearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
