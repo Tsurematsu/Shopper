@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopper">
         <activity
+            android:name=".ShoppingSeeDeliveryDate"
+            android:exported="false" />
+        <activity
             android:name=".ShoppingSelectLocation"
             android:exported="false" />
         <activity
