@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Shopper</string>
     <string name="product">product\t\t</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="carrito">Carrito</string>
+    <string name="notificaciones">Notificaciones</string>
 </resources>
