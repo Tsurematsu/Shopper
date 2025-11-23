@@ -7,18 +7,96 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
+
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:rowCount="3"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/contenedorItems"
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:layout_height="50dp"
+            android:layout_margin="10dp">
 
-    </ScrollView>
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_row="0"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Button" />
+
+        </GridLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_rowWeight="1"
+            android:layout_height="0dp">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <Button android:text="A1"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"/>
+
+                    <Button android:text="A1"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+                    <Button android:text="A1"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"/>
+
+                    <Button android:text="A1"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"/>
+                </LinearLayout>
+            </GridLayout>
+        </ScrollView>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+        </GridLayout>
+    </GridLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--      <LinearLayout
+              android:id="@+id/contenedorItems"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+          </LinearLayout>-->

@@ -27,15 +27,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
+        /*
         contenedorItems = findViewById(R.id.contenedorItems);
 
         // Agregar items dinámicamente
         agregarItem("Producto 1", "Descripción del producto 1");
         agregarItem("Producto 2", "Descripción del producto 2");
         agregarItem("Producto 3", "Descripción del producto 3");
-
+        */
     }
 
+
+    /*
     private void agregarItem(String titulo, String descripcion) {
         // Inflar el layout del item
         View itemView = getLayoutInflater().inflate(R.layout.item_producto, contenedorItems, false);
@@ -56,5 +61,6 @@ public class MainActivity extends AppCompatActivity {
         // Agregar el item al contenedor
         contenedorItems.addView(itemView);
     }
+     */
 
 }
