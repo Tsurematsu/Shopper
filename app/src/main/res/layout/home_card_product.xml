@@ -10,8 +10,9 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        android:layout_height="120dp"
+        android:src="@drawable/puente_h"
+        android:contentDescription="@string/product" />
 
     <LinearLayout
         android:layout_width="match_parent"
