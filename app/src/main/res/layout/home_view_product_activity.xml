@@ -15,6 +15,7 @@
         android:rowCount="3"
         android:orientation="vertical">
 
+        <!-- TODO: Fix view icon search        -->
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
