@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ShoppingViewProduct">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:rowCount="3"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0E00C7"
+            android:orientation="vertical" >
+            <include
+                layout="@layout/component_search_bar"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Controlador de motor H Bridge L298n L298 Arduino Stepper Motor" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/test_puente_h"
+                    android:layout_height="300dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/black"
+                    android:text="$3.403.00" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="Calificacion" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="30dp"
+                    android:columnCount="2"
+                    android:rowCount="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:text="4.9" />
+
+                    <GridLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:columnCount="5"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_columnWeight="1"
+                        android:rowCount="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_columnWeight="1"
+                            android:layout_height="40dp"
+                            android:src="@drawable/icon_star"
+                            />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_columnWeight="1"
+                            android:layout_height="40dp"
+                            android:src="@drawable/icon_star"
+                            />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_columnWeight="1"
+                            android:layout_height="40dp"
+                            android:src="@drawable/icon_star"
+                            />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_columnWeight="1"
+                            android:layout_height="40dp"
+                            android:src="@drawable/icon_star"
+                            />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_columnWeight="1"
+                            android:layout_height="40dp"
+                            android:src="@drawable/icon_star"
+                            />
+
+
+                    </GridLayout>
+
+                </GridLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="Costo de envio" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="$11.000.0" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="Numero de productos disponibles" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="(5)" />
+
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textAlignment="center"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:text="Comprar" />
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textAlignment="center"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:text="Añadir al carrito" />
+
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="Descripcion" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:layout_marginBottom="100dp"
+                    android:textSize="18sp"
+                    android:text="Este módulo es el complemento ideal para proyectos de robótica y Router CNC. Permite controlar hasta 2 motores de corriente continua o un motor paso a paso bipolar. También permite controlar un motor paso a paso unipolar configurado como bipolar de forma muy sencilla y eficaz. El módulo permite controlar el sentido de giro y velocidad mediante señales TTL que se pueden obtener de microcontroladores y tarjetas de desarrollo como Arduino, Raspberry Pi y lauchpads de Texas Instruments." />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/component_home_navbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="5"/>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Estos son ejemplos para colocar elementos encima   -->
+    <!--    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_circle_notifications"
+            android:elevation="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_circle_notifications"
+            android:elevation="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--
+
+<GridLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:columnCount="1"
+android:rowCount="4"
+android:orientation="vertical">
+
+-->

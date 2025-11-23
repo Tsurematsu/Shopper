@@ -16,6 +16,14 @@
         android:rowCount="4"
         android:orientation="vertical">
 
+        <include
+            layout="@layout/component_search_bar"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+
+<!--
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -48,6 +56,7 @@
                 android:src="@drawable/icon_search"/>
 
         </GridLayout>
+-->
 
         <GridLayout
             android:layout_width="match_parent"
@@ -73,14 +82,14 @@
                 android:columnCount="2">
 
                 <include
-                    layout="@layout/home_card_product"
+                    layout="@layout/component_home_card_product"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_columnWeight="1"/>
 
                 <include
-                    layout="@layout/home_card_product"
+                    layout="@layout/component_home_card_product"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -90,13 +99,33 @@
         </ScrollView>
 
         <include
-            layout="@layout/home_navbar"
+            layout="@layout/component_home_navbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:rowCount="5"/>
 
     </GridLayout>
 
+<!-- Estos son ejemplos para colocar elementos encima   -->
+<!--    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon_circle_notifications"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon_circle_notifications"
+        android:elevation="10dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
