@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/home_card"
     android:orientation="vertical">
 
     <ImageView
@@ -12,10 +13,49 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Controlador de motor puente H mas sistemas" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#2FAB2F"
+            android:textSize="15sp"
+            android:text="Promo 20% descuento" />
+
+        <TextView
+            android:id="@+id/textAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="$3.403,00" />
+
+
+    </LinearLayout>
+
+
+<!--
+
     <Button
         android:id="@+id/btnCard"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="A1"/>
+-->
 
 </LinearLayout>
