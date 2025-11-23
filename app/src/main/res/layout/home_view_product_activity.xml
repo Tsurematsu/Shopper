@@ -15,18 +15,34 @@
         android:rowCount="3"
         android:orientation="vertical">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#0E00C7"
-            android:orientation="vertical" >
-            <include
-                layout="@layout/component_search_bar"
-                android:layout_width="match_parent"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content"/>
+            android:layout_height="60dp"
+            android:columnCount="2"
+            android:background="#4A5EED"
+            android:rowCount="1">
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_arrow_back"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1">
+                <include
+                    layout="@layout/component_search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </GridLayout>
+
+
+
 
 
         <ScrollView
