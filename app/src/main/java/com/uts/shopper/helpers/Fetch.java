@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.function.Consumer;
 
 import okhttp3.Call;
@@ -167,33 +168,59 @@ public class Fetch {
         });
     }
 
-    // Método para subir archivos (Multipart)
-    public static void uploadFile(String endPoint, String paramName, File file, Consumer<String> onResponse) {
-        if (file == null || !file.exists()) {
-            Log.e("Fetch", "El archivo no existe o es nulo");
+    /**
+     * Sube un archivo usando Multipart/form-data.
+     *
+     * @param endPoint La ruta del endpoint (ej: "/subir-foto")
+     * @param keyName  El nombre del campo que espera el backend (ej: "archivo" o "image")
+     * @param filePath La ruta absoluta del archivo (que te da el FileHelper)
+     * @param onResponse Callback con la respuesta del servidor
+     */
+    public static void upload(String endPoint, String keyName, String filePath, Consumer<String> onResponse) {
+        // 1. Validar que la ruta no sea nula
+        if (filePath == null || filePath.isEmpty()) {
+            Log.e("Fetch", "La ruta del archivo es nula o vacía");
             onResponse.accept(null);
             return;
         }
 
-        // Determinar el tipo de contenido del archivo (o usar stream por defecto)
-        MediaType MEDIA_TYPE = MediaType.parse("application/octet-stream");
+        // 2. Crear el archivo desde la ruta
+        File file = new File(filePath);
 
-        // Construimos el cuerpo Multipart
+        // 3. Validar que el archivo exista físicamente
+        if (!file.exists()) {
+            Log.e("Fetch", "El archivo no existe en la ruta: " + filePath);
+            onResponse.accept(null);
+            return;
+        }
+
+        // 4. Intentar adivinar el tipo de archivo (Mime Type) o usar default
+        String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+        if (mimeType == null) {
+            mimeType = "application/octet-stream"; // Tipo genérico binario
+        }
+        MediaType fileMediaType = MediaType.parse(mimeType);
+
+        // 5. Construir el cuerpo de la petición (Multipart)
         RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart(paramName, file.getName(), RequestBody.create(file, MEDIA_TYPE))
+                .setType(MultipartBody.FORM) // Importante para que sea form-data
+                // "keyName" es el nombre del campo, file.getName() es el nombre del fichero, fileMediaType es el contenido
+                .addFormDataPart(keyName, file.getName(), RequestBody.create(file, fileMediaType))
                 .build();
 
+        // 6. Construir la petición
         Request.Builder requestBuilder = new Request.Builder()
                 .url(urlAPI + endPoint)
                 .post(requestBody);
 
+        // 7. Agregar Auth Token si existe
         if (authToken != null && !authToken.isEmpty()) {
             requestBuilder.addHeader("Authorization", "Bearer " + authToken);
         }
 
         Request request = requestBuilder.build();
 
+        // 8. Ejecutar
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -207,6 +234,8 @@ public class Fetch {
                     String responseBody = response.body().string();
                     onResponse.accept(responseBody);
                 } else {
+                    // Puedes loguear el error del body si quieres ver por qué falló el back
+                    Log.e("Fetch", "Error upload: " + response.code());
                     onResponse.accept(null);
                 }
             }
