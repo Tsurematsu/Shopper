@@ -39,10 +39,10 @@
             android:name=".ShoppingDeliveryAddress"
             android:exported="false" />
         <activity
-            android:name=".ShoppingViewProduct"
+            android:name=".HomeViewProductActivity"
             android:exported="false" />
         <activity
-            android:name=".ShoppingCart"
+            android:name=".HomeCarActivity"
             android:exported="false" />
         <activity
             android:name=".HomeNotificationsActivity"

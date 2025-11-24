@@ -1,4 +1,7 @@
-    /*
+private LinearLayout contenedorItems;
+
+
+/*
     contenedorItems = findViewById(R.id.contenedorItems);
 
     // Agregar items dinámicamente
