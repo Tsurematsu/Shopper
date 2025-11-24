@@ -1,34 +1,41 @@
 package com.uts.shopper;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import com.uts.shopper.helpers.FileHelper;
 
+import java.io.File;
+
+public class MainActivity extends AppCompatActivity {
+    private FileHelper fileHelper;
+    private ImageView imageView;
+    private TextView txtRuta;
     private LinearLayout contenedorItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.home_view_product_activity);
-//        setContentView(R.layout.home_activity);
+        setContentView(R.layout.home_activity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
 
         /*
         contenedorItems = findViewById(R.id.contenedorItems);
@@ -37,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
         agregarItem("Producto 1", "Descripción del producto 1");
         agregarItem("Producto 2", "Descripción del producto 2");
         agregarItem("Producto 3", "Descripción del producto 3");
-        */
-    }
 
+        */
+
+    }
 
     /*
     private void agregarItem(String titulo, String descripcion) {
