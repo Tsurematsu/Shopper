@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         aux_home.connection(this::hacerPeticionDePrueba);
 
 //        startActivity(new Intent(MainActivity.this, PayPse.class));
+        startActivity(new Intent(MainActivity.this, UserLoginActivity.class));
 
     }
 
