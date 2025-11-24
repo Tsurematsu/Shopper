@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="5">
+
+            <!-- Fila 1: Título y Cantidad -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Titulo del producto"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cantidad"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- Imagen que ocupa 5 filas -->
+            <ImageView
+                android:layout_gravity="end|center_vertical"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_rowSpan="5"
+                android:background="#E0E0E0"
+                android:scaleType="centerCrop"/>
+
+            <!-- Fila 2: Descripción (ocupa 2 columnas) -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="descripcion del producto"
+                android:textSize="14sp"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Fila 3: Precio -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="precio"
+                android:textSize="14sp"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="1"/>
+
+            <!-- Fila 4: Costo Envío -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="costo envio"
+                android:textSize="14sp"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="1"/>
+
+            <!-- Fila 5: Calificación -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="calificacion"
+                android:textSize="14sp"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="1"/>
+
+        </GridLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
