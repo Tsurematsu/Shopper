@@ -40,6 +40,9 @@ gson = "2.10.1"
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 # Definición de la librería Gson
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
 ```
 
 ---
@@ -55,6 +58,7 @@ dependencies {
     // ✅ Dependencias Requeridas para Fetch.java
     implementation(libs.okhttp)
     implementation(libs.gson)
+    implementation(libs.converter.gson)
     
     // NOTA: Aunque tenías 'retrofit' en tu lista, tu clase Fetch 
     // NO lo utiliza internamente, por lo que no es necesario para este helper.
