@@ -19,6 +19,7 @@
 
             <!-- Fila 1: Título y Cantidad -->
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Titulo del producto"
@@ -28,6 +29,7 @@
                 android:layout_marginEnd="8dp"/>
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="cantidad"
@@ -45,6 +47,7 @@
 
             <!-- Fila 2: Descripción (ocupa 2 columnas) -->
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="descripcion del producto"
@@ -56,6 +59,7 @@
 
             <!-- Fila 3: Precio -->
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="precio"
@@ -65,6 +69,7 @@
 
             <!-- Fila 4: Costo Envío -->
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="costo envio"
@@ -74,6 +79,7 @@
 
             <!-- Fila 5: Calificación -->
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="calificacion"
