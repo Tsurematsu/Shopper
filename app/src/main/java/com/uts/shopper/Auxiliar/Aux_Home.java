@@ -16,9 +16,10 @@ public class Aux_Home {
     }
     public void connection(Consumer<String> passCall){
         String[] posiblesServidores = {
-                "http://localhost:8080", //Conexion para desarrollo
-                "http://192.168.0.35:8080", //Conexion de prueba en vivo
+                "http://localhost:8080", //Conexion para desarrollo local
+                "http://192.168.0.35:8080", //Conexion de prueba en parcial
                 "http://192.168.80.23:8080", // Conexion de test PC de mesa
+                "http://10.11.9.31:8080", // Conexion PORTABLE
         };
         Fetch.findWorkingHost(posiblesServidores, (url) -> {
             parent.runOnUiThread(() -> {passCall.accept(url);});}, () -> {
