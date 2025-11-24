@@ -14,6 +14,74 @@ Asegúrate de tener el permiso de internet en tu `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
+Basado en el código de tu clase `Fetch`, que es un cliente HTTP manual construido sobre **OkHttp** y que usa **Gson** para el manejo de JSON, he extraído únicamente las dependencias necesarias para que funcione.
+
+He descartado librerías como `retrofit` (ya que tu clase `Fetch` hace manualmente el trabajo que haría Retrofit) y las de cámara/UI, ya que no afectan la lógica interna de la conexión.
+
+Aquí tienes la documentación de implementación:
+
+# 📦 Dependencias del Helper `Fetch`
+
+Para que la clase `Fetch` funcione correctamente manejando peticiones HTTP (GET, POST, Multipart) y serialización JSON, solo necesitas implementar **OkHttp** y **Gson**.
+
+## 1. Configuración en `libs.versions.toml`
+
+Agrega o mantén únicamente estas líneas en tu archivo de catálogo de versiones.
+
+```toml
+[versions]
+# Cliente HTTP (Motor de conexiones)
+okhttp = "4.11.0"
+# Convertidor JSON (Serialización de objetos)
+gson = "2.10.1"
+
+[libraries]
+# Definición de la librería OkHttp
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+# Definición de la librería Gson
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+```
+
+---
+
+## 2. Implementación en `build.gradle.kts` (Module: app)
+
+En el bloque de dependencias de tu archivo de construcción, implementa las referencias definidas anteriormente.
+
+```kotlin
+dependencies {
+    // ... otras dependencias de UI (appcompat, material, etc.)
+
+    // ✅ Dependencias Requeridas para Fetch.java
+    implementation(libs.okhttp)
+    implementation(libs.gson)
+    
+    // NOTA: Aunque tenías 'retrofit' en tu lista, tu clase Fetch 
+    // NO lo utiliza internamente, por lo que no es necesario para este helper.
+}
+```
+
+---
+
+## 📝 Explicación de los Componentes
+
+| Librería | Versión | Uso en `Fetch.java` |
+| :--- | :--- | :--- |
+| **OkHttp** | `4.11.0` | Es el motor principal. Proporciona las clases `OkHttpClient`, `Request`, `RequestBody`, `MultipartBody` y maneja la conexión a internet, los timeouts y los hilos en background (`enqueue`). |
+| **Gson** | `2.10.1` | Se utiliza en los métodos genéricos (`<T>`) para transformar automáticamente los Strings JSON que vienen del servidor en Objetos Java (`gson.fromJson`) y viceversa (`gson.toJson`). |
+
+### ⚠️ Requisito de Java
+Asegúrate de mantener la compatibilidad con Java 8 (versión 1.8) o superior, ya que tu helper utiliza `Consumer<T>` y Lambdas. Tu configuración actual ya lo cumple:
+
+```kotlin
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+```
+
+--
+
 ### 2. Inicialización
 ```java
 // Configura la URL base de tu API (No olvides la barra al final si es necesario)
