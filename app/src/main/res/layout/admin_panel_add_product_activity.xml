@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminPanelAddProductActivity">
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:rowCount="3">
+
+        <GridLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:columnCount="2"
+            android:background="#4A5EED"
+            android:rowCount="1">
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_arrow_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="50dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:text="Admin add product"
+                android:textSize="33sp"/>
+
+        </GridLayout>
+
+        <ScrollView
+            android:background="#E9E9E9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="10dp"
+            android:layout_rowWeight="1">
+
+            <LinearLayout
+                android:paddingBottom="500dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/test_puente_h"/>
+
+                    <LinearLayout
+                        android:padding="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cantidad"/>
+
+                        <EditText
+                            android:textColor="@color/black"
+                            android:layout_width="100dp"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calificación"/>
+
+                        <EditText
+                            android:textColor="@color/black"
+                            android:layout_width="100dp"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Titulo del producto"/>
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descripcion del producto"/>
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Precio del producto $"/>
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Costo de envio $"/>
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <GridLayout
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:background="@color/white"
+                    android:rowCount="1">
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textAlignment="center"
+                        android:background="@drawable/draw_home_prod_button"
+                        android:textColor="@color/white"
+                        android:textSize="19sp"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Agregar"/>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textAlignment="center"
+                        android:background="@drawable/draw_home_prod_button"
+                        android:textColor="@color/white"
+                        android:textSize="19sp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_columnWeight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Cancelar"/>
+
+                </GridLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

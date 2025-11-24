@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Shopper"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AdminPanelAddProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminPanelActivity"
             android:exported="false" />
         <activity
