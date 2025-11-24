@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Shopper"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UserLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserRegisterActivity"
             android:exported="false" />
         <activity
