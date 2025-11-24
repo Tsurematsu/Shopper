@@ -205,17 +205,17 @@
                     android:textSize="20sp"
                     android:ems="10"
                     android:inputType="number" />
-                <!--   Todo: fix color label "buttons"             -->
+
                 <TextView
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:textAlignment="center"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="25dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
                     android:background="@drawable/draw_home_prod_button"
                     android:text="Comprar" />
 
@@ -224,12 +224,12 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:textAlignment="center"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:layout_width="match_parent"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
-                    android:textSize="25dp"
-                    android:background="@drawable/draw_home_prod_button"
+                    android:textSize="18sp"
+                    android:background="@drawable/draw_home_prod_button1"
                     android:text="Añadir al carrito" />
 
 
