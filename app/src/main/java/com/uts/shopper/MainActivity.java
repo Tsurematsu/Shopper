@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.uts.shopper.helpers.Fetch;
 import com.uts.shopper.helpers.FileHelper;
 
 import java.io.File;
@@ -37,6 +38,21 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        String[] posiblesServidores = {
+                "http://192.168.80.23:8080",
+                "http://localhost:8080",
+        };
+        Fetch.findWorkingHost(posiblesServidores, (url) -> {
+            runOnUiThread(() -> {
+                Log.d("API_DEBUG", "Conectado a: " + url);
+                Toast.makeText(this, "Conectado a: " + url, Toast.LENGTH_SHORT).show();
+                hacerPeticionDePrueba();
+            });}, () -> {runOnUiThread(() -> {
+                Log.e("API_DEBUG", "Ningún servidor respondió.");
+                Toast.makeText(this, "Error: No se pudo conectar a ningún servidor", Toast.LENGTH_LONG).show();
+            });
+        });
+
         /*
         contenedorItems = findViewById(R.id.contenedorItems);
 
@@ -47,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
         */
 
+    }
+
+    private void hacerPeticionDePrueba() {
+        Fetch.GET("/api", (response) -> {
+            if (response != null) {
+                Log.d("API_DEBUG", "Respuesta cruda: " + response);
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Respuesta cruda: " + response, Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                Log.e("API_DEBUG", "Error en la petición");
+            }
+        });
     }
 
     /*

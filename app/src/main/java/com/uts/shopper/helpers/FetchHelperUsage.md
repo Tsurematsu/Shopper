@@ -146,3 +146,88 @@ Para cerrar sesión (dejar de enviar el token):
 ```java
 Fetch.setAuthToken(null);
 ```
+
+
+
+Este método es muy útil para llamarlo en el onResume de tu Activity o antes de intentar un login.
+code
+```java
+// Ejemplo en tu MainActivity
+
+@Override
+protected void onResume() {
+super.onResume();
+
+    // Verificar conexión con el servidor
+    Fetch.checkHealth(isServerUp -> {
+        runOnUiThread(() -> {
+            if (isServerUp) {
+                Log.d("API", "El servidor está ONLINE");
+                // Poner un icono verde, habilitar botones, etc.
+                findViewById(R.id.statusIndicator).setBackgroundColor(Color.GREEN);
+            } else {
+                Log.e("API", "El servidor no responde o no hay internet");
+                // Mostrar alerta, deshabilitar botones, etc.
+                Toast.makeText(this, "Sin conexión al servidor", Toast.LENGTH_LONG).show();
+                findViewById(R.id.statusIndicator).setBackgroundColor(Color.RED);
+            }
+        });
+    });
+}
+
+```
+Explicación técnica de por qué funciona así:
+client.newBuilder(): Reutiliza la configuración de tu cliente principal (pool de conexiones, interceptores) pero nos permite cambiar solo el tiempo de espera.
+.head(): Si tu API es http://mi-api.com/api, una petición HEAD verifica que la máquina responda. Incluso si la ruta /api devuelve un error 404 o 401 (No autorizado), eso es bueno en este caso, porque confirma que el servidor existe y te está respondiendo "No te conozco" o "No encontrado", pero está vivo.
+onFailure: Aquí es donde cae si el dominio no existe, si el usuario no tiene WiFi/Datos, o si el servidor está apagado/fuego bloqueando la conexión.
+
+
+---
+
+## 🔍 Selección Automática de Host (Discovery)
+
+El método `findWorkingHost` permite probar una lista de direcciones URL secuencialmente hasta encontrar una que responda. Esto es ideal para entornos de desarrollo donde la IP local cambia frecuentemente, o para tener una configuración híbrida (Local vs Producción).
+
+### Comportamiento
+1.  Prueba las URLs en el orden del array.
+2.  Usa un **timeout corto (2s)** para no bloquear la app.
+3.  Si una conecta, asigna automáticamente `Fetch.urlAPI` y ejecuta el callback de éxito.
+4.  Si ninguna conecta, ejecuta el callback de error.
+
+### Ejemplo de Implementación
+
+```java
+// 1. Definir la lista de posibles servidores por prioridad
+String[] posiblesServidores = {
+    "http://192.168.80.23:8080",  // Prioridad 1: IP Red A
+    "http://192.168.1.50:8080",   // Prioridad 2: IP Red B
+    "https://api.miproyecto.com"  // Prioridad 3: Servidor Nube (Fallback)
+};
+
+// 2. Iniciar la búsqueda
+Fetch.findWorkingHost(posiblesServidores, 
+    (urlConectada) -> {
+        // ✅ ÉXITO: Se encontró un servidor activo
+        // Nota: El callback se ejecuta en hilo secundario, usa runOnUiThread para UI
+        runOnUiThread(() -> {
+            Log.d("API_DEBUG", "Conectado a: " + urlConectada);
+            Toast.makeText(this, "Servidor establecido: " + urlConectada, Toast.LENGTH_SHORT).show();
+            
+            // Ya es seguro realizar peticiones
+            hacerPeticionDePrueba();
+        });
+    }, 
+    () -> {
+        // ❌ ERROR: Ninguna URL respondió
+        runOnUiThread(() -> {
+            Log.e("API_DEBUG", "Ningún servidor respondió.");
+            Toast.makeText(this, "Error de conexión: Verifique su red", Toast.LENGTH_LONG).show();
+        });
+    }
+);
+```
+
+### ⚠️ Notas Importantes
+*   **Actualización Automática:** No necesitas hacer `Fetch.urlAPI = url` manualmente dentro del éxito; el helper ya lo hace por ti.
+*   **Localhost en Android:** Recuerda que `localhost` dentro del emulador se refiere al propio emulador. Para referirte a tu PC usa `10.0.2.2`.
+*   **Hilos de UI:** Al igual que los otros métodos, los callbacks corren en background. Siempre usa `runOnUiThread` si vas a mostrar Toasts o cambiar vistas.

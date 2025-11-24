@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Opcional: Para verificar si hay conexión antes de hacer la petición -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"

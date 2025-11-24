@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLConnection;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import okhttp3.Call;
@@ -238,6 +239,109 @@ public class Fetch {
                     Log.e("Fetch", "Error upload: " + response.code());
                     onResponse.accept(null);
                 }
+            }
+        });
+    }
+
+    /**
+     * Comprueba si el servidor (Host) responde.
+     * Realiza una petición HEAD ligera con un timeout corto.
+     *
+     * @param onResult Callback que devuelve true si hay conexión, false si falla.
+     */
+    public static void checkHealth(Consumer<Boolean> onResult) {
+        if (urlAPI == null || urlAPI.isEmpty()) {
+            onResult.accept(false);
+            return;
+        }
+
+        // Creamos una copia del cliente pero con un timeout corto (ej: 3 segundos)
+        // No queremos que el usuario espere 30 segundos para saber si hay red.
+        OkHttpClient shortTimeoutClient = client.newBuilder()
+                .connectTimeout(3, TimeUnit.SECONDS)
+                .readTimeout(3, TimeUnit.SECONDS)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(urlAPI) // Intenta conectar a la raíz o base de la URL
+                .head()      // IMPORTANTE: Método HEAD (solo pide cabeceras, es muy rápido)
+                .build();
+
+        shortTimeoutClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // Si falla por DNS, Timeout o sin internet
+                onResult.accept(false);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                // Si obtenemos CUALQUIER respuesta (incluso 404, 401, 500),
+                // significa que el host EXISTE y es alcanzable.
+                // Cerramos el body aunque esté vacío para liberar recursos.
+                response.close();
+                onResult.accept(true);
+            }
+        });
+    }
+
+    /**
+     * Recorre una lista de URLs y establece como urlAPI la primera que responda.
+     *
+     * @param urls      Array de posibles URLs (ej: {"http://192.168.1.5:80", "http://miapi.com"})
+     * @param onFound   Callback que recibe la URL ganadora.
+     * @param onFailure Callback (Runnable) que se ejecuta si NINGUNA URL funciona.
+     */
+    public static void findWorkingHost(String[] urls, Consumer<String> onFound, Runnable onFailure) {
+        if (urls == null || urls.length == 0) {
+            onFailure.run();
+            return;
+        }
+        // Iniciamos la cadena de comprobación desde el índice 0
+        checkUrlRecursive(urls, 0, onFound, onFailure);
+    }
+
+    // Método privado auxiliar para la recursividad
+    private static void checkUrlRecursive(String[] urls, int index, Consumer<String> onFound, Runnable onFailure) {
+        // Caso base: Si ya recorrimos todo el array y no hubo éxito
+        if (index >= urls.length) {
+            onFailure.run();
+            return;
+        }
+
+        String candidateUrl = urls[index];
+
+        // Cliente ultra-rápido (2 segundos de timeout) para no hacer esperar al usuario
+        OkHttpClient fastClient = client.newBuilder()
+                .connectTimeout(2, TimeUnit.SECONDS)
+                .readTimeout(2, TimeUnit.SECONDS)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(candidateUrl)
+                .head() // Usamos HEAD para ser rápidos
+                .build();
+
+        fastClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // FALLÓ esta URL: Intentamos con la siguiente (índice + 1)
+                // Importante: Logueamos para debug
+                Log.w("Fetch", "Fallo al conectar con: " + candidateUrl);
+                checkUrlRecursive(urls, index + 1, onFound, onFailure);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                // ÉXITO: El servidor respondió
+                response.close(); // Cerramos body inmediatamente
+
+                // 1. Establecemos la URL oficial en la clase estática
+                urlAPI = candidateUrl;
+                Log.d("Fetch", "Servidor encontrado y establecido: " + urlAPI);
+
+                // 2. Avisamos al callback de éxito
+                onFound.accept(candidateUrl);
             }
         });
     }
