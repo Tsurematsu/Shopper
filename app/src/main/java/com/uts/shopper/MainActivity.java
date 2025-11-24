@@ -1,5 +1,6 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.home_car_activity);
+        setContentView(R.layout.user_register_activity);
 //        setContentView(R.layout.home_activity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         Aux_Home aux_home = new Aux_Home(this);
         aux_home.connection(this::hacerPeticionDePrueba);
+
+//        startActivity(new Intent(MainActivity.this, PayPse.class));
 
     }
 

@@ -24,7 +24,7 @@ public class Aux_Home {
             parent.runOnUiThread(() -> {passCall.accept(url);});}, () -> {
             parent.runOnUiThread(() -> {
                 Log.e("API_DEBUG", "ERROR DE CONEXION CON EL SERVIDOR.");
-                Toast.makeText(parent, "Error: No se pudo conectar a ningún servidor", Toast.LENGTH_LONG).show();
+                Toast.makeText(parent, "Servidor no disponible", Toast.LENGTH_LONG).show();
             });
         });
     }
