@@ -48,6 +48,7 @@
             android:layout_rowWeight="1">
 
             <LinearLayout
+                android:id="@+id/contenedorCarListLayout"
                 android:paddingBottom="50dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -80,13 +81,15 @@
                 android:columnCount="2"
                 android:rowCount="1">
                 <TextView
+                    android:id="@+id/carLayoutNumProductos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:text="Productos (1)"/>
+                    android:text="Productos (x)"/>
 
                 <TextView
+                    android:id="@+id/text_sumSubProductos"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +106,7 @@
                 android:columnCount="2"
                 android:rowCount="1">
                 <TextView
+                    android:id="@+id/carLayoutNumEnvio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"

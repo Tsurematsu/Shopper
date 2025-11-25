@@ -38,6 +38,7 @@
                 android:textSize="33sp"/>
 
             <ImageView
+                android:id="@+id/addproduct"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_add" />

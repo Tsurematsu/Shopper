@@ -13,9 +13,10 @@
         android:layout_marginBottom="5dp">
 
         <ImageView
+            android:id="@+id/itemCarImagen"
             android:layout_gravity="center"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:src="@drawable/test_puente_h"/>
 
         <LinearLayout
@@ -27,43 +28,93 @@
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:rowCount="1"
                 android:columnCount="2">
 
                 <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/itemCarTitle"
                     android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingEnd="5dp"
+                    android:textAlignment="textStart"
                     android:text="Puente h" />
 
-                <ImageView
-                    android:layout_gravity="end"
-                    android:src="@drawable/icon_delete"
-                    android:layout_width="30dp"
+                <GridLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    />
+                    android:rowCount="1"
+                    android:columnCount="1"
+                    android:layout_gravity="end">
+                    <ImageView
+                        android:id="@+id/itemCarRemoveItem"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_delete"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        />
+                </GridLayout>
+
+
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:columnCount="3">
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/itemCarUnidades"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:textSize="15sp"
+                    android:text="Unidates (5)"/>
+
+                <ImageView
+                    android:id="@+id/btnSubstract"
+                    android:background="#2A4AEF"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/icon_remove"/>
+
+                <ImageView
+                    android:id="@+id/btnAddItem"
+                    android:background="#2A4AEF"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_add"/>
 
             </GridLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Unidates (5)"/>
-            <TextView
+                android:textColor="@color/black"
+                android:id="@+id/itemCarPrecioEnvio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:text="Envio: $11.000.00"/>
+
             <TextView
+                android:id="@+id/itemCarPrecioUnitario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="$3.403.00"/>
+                android:text="$3.403.00"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
             <TextView
+                android:textColor="@color/black"
+                android:id="@+id/itemCarSubtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"

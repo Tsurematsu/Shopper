@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.uts.shopper.Models.ModelSessionUser;
 
 public class AppSessionUserManager {
-    private AppCompatActivity parent = null;
     private AppData appData;
     public AppSessionUserManager(AppCompatActivity parent){
-        this.parent = parent;
         appData = new AppData(parent);
     }
     public void saveUserSession(ModelSessionUser user){

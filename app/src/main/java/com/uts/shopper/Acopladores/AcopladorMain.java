@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.uts.shopper.MainActivity;
 import com.uts.shopper.Models.ModelProducto;
 import com.uts.shopper.R;
 import com.uts.shopper.helpers.TextHelper;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class AcopladorMain {
-    private AppCompatActivity parent = null;
-    public AcopladorMain(AppCompatActivity parent ){
+    private MainActivity parent = null;
+    public AcopladorMain(MainActivity parent ){
         this.parent = parent;
     }
     public void AddLayoutProductos(ArrayList<ModelProducto> modelProductos, Consumer<ModelProducto> ActionClick){
