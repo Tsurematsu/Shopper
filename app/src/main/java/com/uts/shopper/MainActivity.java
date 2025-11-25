@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.Acopladores.AcopladorMain;
 import com.uts.shopper.Auxiliar.AuxMain;
+import com.uts.shopper.Components.ComponentNavbar;
 import com.uts.shopper.Controllers.ControllerMain;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        ComponentNavbar.apply(this, "inicio");
     }
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, HomeViewProductActivity.class);
                     intent.putExtra("PRODUCTO", producto);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                 });
             });
         });

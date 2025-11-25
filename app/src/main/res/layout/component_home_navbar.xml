@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:background="@drawable/draw_nav_option_un_selected"
-        android:id="@+id/home"
+        android:id="@+id/inicio"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"
@@ -39,7 +39,7 @@
 
     <LinearLayout
         android:background="@drawable/draw_nav_option_un_selected"
-        android:id="@+id/navFavoritos"
+        android:id="@+id/favoritos"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"
@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/navCarrito"
+        android:id="@+id/carrito"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"
@@ -93,7 +93,7 @@
 
     <LinearLayout
         android:background="@drawable/draw_nav_option_un_selected"
-        android:id="@+id/notifications"
+        android:id="@+id/entrada"
         android:clickable="true"
         android:focusable="true"
 
@@ -122,7 +122,7 @@
 
     <LinearLayout
         android:background="@drawable/draw_nav_option_un_selected"
-        android:id="@+id/asConfigured"
+        android:id="@+id/mas"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"

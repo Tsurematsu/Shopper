@@ -1,6 +1,8 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,12 @@ public class UserLoginActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        TextView linkRegister = findViewById(R.id.link_registrarse);
+        linkRegister.setOnClickListener(e->{
+            Intent intent = new Intent(this, UserRegisterActivity.class);
+            startActivity(intent);
         });
     }
 }

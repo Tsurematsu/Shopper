@@ -126,6 +126,14 @@
                 android:textColor="@color/black"
                 android:text="Mantener mi sesión?" />
 
+            <TextView
+                android:id="@+id/link_registrarse"
+                android:textColor="#0505AF"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si no tienes cuenta registrate aqui!!" />
+
         </LinearLayout>
 
         <GridLayout

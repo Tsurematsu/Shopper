@@ -27,7 +27,7 @@ public class ControllerMain {
                             Double.parseDouble((String) item.get("precioUnitairo")),
                             Double.parseDouble((String) item.get("costoEnvio")),
                             Integer.parseInt((String) item.get("cantidad")),
-                            Integer.parseInt((String) item.get("calificacion"))
+                            Double.parseDouble((String) item.get("calificacion"))
                     ));
                 }
                 callback.accept(productos);
