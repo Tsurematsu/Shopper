@@ -2,13 +2,13 @@ package com.uts.shopper.Controllers;
 
 import android.util.Log;
 
-import com.uts.shopper.Models.ModelRegisterUserRequest;
+import com.uts.shopper.Models.ModelRequestRegisterUser;
 import com.uts.shopper.helpers.Fetch;
 
 import java.util.function.Consumer;
 
 public class ControllerRegister {
-    public void RegistoPersona(ModelRegisterUserRequest data, Consumer<Boolean> onResult){
+    public void RegistoPersona(ModelRequestRegisterUser data, Consumer<Boolean> onResult){
         try {
             Fetch.PostMap(data,"/api/personas/register", (lista) -> {
                 if (lista == null)  return;

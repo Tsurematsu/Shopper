@@ -14,7 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.Controllers.ControllerRegister;
-import com.uts.shopper.Models.ModelRegisterUserRequest;
+import com.uts.shopper.Models.ModelRequestRegisterUser;
 
 public class UserRegisterActivity extends AppCompatActivity {
     private final ControllerRegister controllerRegister = new ControllerRegister();
@@ -45,7 +45,7 @@ public class UserRegisterActivity extends AppCompatActivity {
             String text_password = String.valueOf(password.getText());
             boolean bool_isAdmin = isAdmin.isChecked();
 
-            ModelRegisterUserRequest userData = new ModelRegisterUserRequest(
+            ModelRequestRegisterUser userData = new ModelRequestRegisterUser(
                     text_correo,
                     text_nombre,
                     text_password,

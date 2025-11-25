@@ -1,9 +1,9 @@
 package com.uts.shopper.Models;
 
-public class ModelLoginUserRequest {
+public class ModelRequestLoginUser {
     String usuario;
     String contrasena;
-    public ModelLoginUserRequest(String usuario, String contrasena) {
+    public ModelRequestLoginUser(String usuario, String contrasena) {
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
