@@ -1,15 +1,18 @@
 package com.uts.shopper.Models;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Producto {
     public String titulo;
     public String descripcion;
     public String imagenUrl;
-    public long precioUnitairo;
-    public long costoEnvio;
+    public double precioUnitairo;
+    public double costoEnvio;
     public int cantidad;
     public int calificacion;
 
-    public Producto(String titulo, String descripcion, String imagenUrl, long precioUnitairo, long costoEnvio, int cantidad, int calificacion) {
+    public Producto(String titulo, String descripcion, String imagenUrl, double precioUnitairo, double costoEnvio, int cantidad, int calificacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagenUrl = imagenUrl;
