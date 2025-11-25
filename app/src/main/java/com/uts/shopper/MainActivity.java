@@ -1,5 +1,6 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         auxMain.StartingConnection((url)->{
             controllerMain.CargarProductos((productos)->{
-                acopladorMain.AddLayoutProductos(productos, (index)->{
-
+                acopladorMain.AddLayoutProductos(productos, (producto)->{
+                    Intent intent = new Intent(this, HomeViewProductActivity.class);
+                    intent.putExtra("PRODUCTO", producto);
+                    startActivity(intent);
                 });
             });
         });

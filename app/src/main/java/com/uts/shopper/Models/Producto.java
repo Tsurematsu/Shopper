@@ -1,9 +1,10 @@
 package com.uts.shopper.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Producto {
+public class Producto  implements Serializable {
     public String titulo;
     public String descripcion;
     public String imagenUrl;

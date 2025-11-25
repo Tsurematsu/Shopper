@@ -3,12 +3,16 @@ package com.uts.shopper.Acopladores;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.uts.shopper.Models.Producto;
 import com.uts.shopper.R;
+import com.uts.shopper.helpers.TextHelper;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -18,7 +22,7 @@ public class AcopladorMain {
     public AcopladorMain(AppCompatActivity parent ){
         this.parent = parent;
     }
-    public void AddLayoutProductos(ArrayList<Producto> productos, Consumer<Integer> ActionClick){
+    public void AddLayoutProductos(ArrayList<Producto> productos, Consumer<Producto> ActionClick){
         parent.runOnUiThread(() -> {
             try {
                 GridLayout contenedorItems = parent.findViewById(R.id.panelProducts);
@@ -26,6 +30,26 @@ public class AcopladorMain {
                 for (Producto producto: productos) {
                     View itemView = parent.getLayoutInflater().inflate(R.layout.component_home_card_product, contenedorItems, false);
                     itemView.setLayoutParams(createGridParams());
+                    TextView txtTitulo = itemView.findViewById(R.id.textTitle);
+                    TextView txtDescripcion = itemView.findViewById(R.id.textDescription);
+                    TextView txtPrecio = itemView.findViewById(R.id.textAmount);
+                    ImageView imgProducto = itemView.findViewById(R.id.imageView);
+
+                    txtTitulo.setText(producto.titulo);
+                    String resumeDescription = producto.descripcion.substring(0, 32) + "...";
+                    txtDescripcion.setText(resumeDescription);
+                    String typePricing = "$" + TextHelper.formatearNumero(String.valueOf(producto.precioUnitairo));
+                    txtPrecio.setText(typePricing);
+                    Glide.with(parent)
+                            .load(producto.imagenUrl)
+                            .placeholder(R.drawable.test_puente_h)
+                            .error(R.drawable.test_puente_h)
+                            .centerCrop()
+                            .into(imgProducto);
+
+                    itemView.setOnClickListener(view -> {
+                        ActionClick.accept(producto);
+                    });
                     contenedorItems.addView(itemView);
                 }
             } catch (Exception e) {
