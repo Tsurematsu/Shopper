@@ -110,6 +110,8 @@ public class HomeCarActivity extends AppCompatActivity {
 
         Consumer<ModelCarrito> RemoveClick = producto->{
             Log.d("APP_API_DEBUG", "-> removed");
+            appSessionCarritoManager.setCarritoList(carritoList);
+            loadPricingData.run();
         };
 
         Consumer<ArrayList<ModelCarrito>> UpdateElement = productos->{

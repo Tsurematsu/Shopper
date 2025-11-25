@@ -84,7 +84,16 @@ public class AcopladorCar {
                     });
 
                     img_itemCarRemoveItem.setOnClickListener(e->{
-                        ActionRemoved.accept(producto);
+                        itemView.animate()
+                                .alpha(0f)
+                                .setDuration(300)
+                                .withEndAction(() -> {
+                                    // Se ejecuta cuando termina la animación
+                                    contenedorItems.removeView(itemView);
+                                    modelCarrito.remove(producto);
+                                    ActionRemoved.accept(producto);
+                                })
+                                .start();
                     });
 
                     img_btnAddItem.setOnClickListener(view->{

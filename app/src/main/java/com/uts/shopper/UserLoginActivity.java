@@ -21,11 +21,14 @@ import com.uts.shopper.Models.ModelRequestLoginUser;
 import com.uts.shopper.Models.ModelSessionUser;
 
 public class UserLoginActivity extends AppCompatActivity {
-    private final AppSessionUserManager appSessionUserManager = new AppSessionUserManager(this);
+    private AppSessionUserManager appSessionUserManager;
     ControllerLogin controllerLogin = new ControllerLogin();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        appSessionUserManager = new AppSessionUserManager(this);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.user_login_activity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

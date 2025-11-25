@@ -1,5 +1,6 @@
     package com.uts.shopper;
 
+    import android.content.Intent;
     import android.os.Bundle;
     import android.util.Log;
     import android.widget.ImageView;
@@ -14,6 +15,7 @@
 
     import com.bumptech.glide.Glide;
     import com.uts.shopper.App.AppSessionCarritoManager;
+    import com.uts.shopper.Components.ComponentNavbar;
     import com.uts.shopper.Models.ModelCarrito;
     import com.uts.shopper.Models.ModelProducto;
     import com.uts.shopper.helpers.TextHelper;
@@ -22,7 +24,6 @@
 
     public class HomeViewProductActivity extends AppCompatActivity {
         AppSessionCarritoManager appSessionCarritoManager;
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
                 return insets;
             });
+            ComponentNavbar.apply(this, "");
 
             // Manejar el botón atrás moderno
             getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -48,6 +50,8 @@
                 finish();
                 overridePendingTransition(0, 0);
             });
+
+
 
             ModelProducto modelProducto = (ModelProducto) getIntent().getSerializableExtra("PRODUCTO", ModelProducto.class);
             if (modelProducto != null) {
@@ -70,8 +74,7 @@
 
             }
 
-            TextView btnAddtoCard = findViewById(R.id.btnAddtoCard);
-            btnAddtoCard.setOnClickListener(e->{
+            Runnable FunAddCard = ()->{
                 ArrayList<ModelCarrito> carList = new ArrayList<>();
 
                 try {
@@ -79,8 +82,6 @@
                 } catch (Exception ex) {
                     Log.e("APP_API_DEBUG", "Error al obtener producto ->" + ex.getMessage());
                 }
-
-                Log.d("APP_API_DEBUG", "Elementos actuales:" + String.valueOf(carList.size()));
 
                 ModelCarrito producto = new ModelCarrito(
                         modelProducto.id,
@@ -90,14 +91,35 @@
                         modelProducto.precioUnitairo,
                         modelProducto.imagenUrl
                 );
-                carList.add(producto);
-                try {
-                    appSessionCarritoManager.setCarritoList(carList);
-                } catch (Exception exc) {
-                    Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
-                }
 
+                boolean exist = false;
+                for (ModelCarrito prod : carList) {
+                    if (producto.titulo.equals(prod.titulo)){
+                        exist = true;
+                        break;
+                    }
+                }
+                if (!exist){
+                    carList.add(producto);
+                    try {
+                        appSessionCarritoManager.setCarritoList(carList);
+                    } catch (Exception exc) {
+                        Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
+                    }
+                }
+            };
+            TextView btnAddtoCard = findViewById(R.id.btnAddtoCard);
+            btnAddtoCard.setOnClickListener(e->{
+                FunAddCard.run();
             });
+            TextView btnComprar = findViewById(R.id.btnComprar);
+            btnComprar.setOnClickListener(e->{
+                FunAddCard.run();
+                Intent intent = new Intent(this, HomeCarActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            });
+
 
         }
     }

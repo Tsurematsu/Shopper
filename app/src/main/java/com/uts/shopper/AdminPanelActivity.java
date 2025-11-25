@@ -12,9 +12,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.uts.shopper.App.AppSessionUserManager;
 
 public class AdminPanelActivity extends AppCompatActivity {
-    AppSessionUserManager appSessionUserManager = new AppSessionUserManager(this);
+    AppSessionUserManager appSessionUserManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        appSessionUserManager = new AppSessionUserManager(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.admin_panel_activity);
