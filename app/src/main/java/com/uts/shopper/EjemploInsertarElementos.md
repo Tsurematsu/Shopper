@@ -5,9 +5,9 @@ private LinearLayout contenedorItems;
     contenedorItems = findViewById(R.id.contenedorItems);
 
     // Agregar items dinámicamente
-    agregarItem("Producto 1", "Descripción del producto 1");
-    agregarItem("Producto 2", "Descripción del producto 2");
-    agregarItem("Producto 3", "Descripción del producto 3");
+    agregarItem("Producto 1", "Descripción del modelProducto 1");
+    agregarItem("Producto 2", "Descripción del modelProducto 2");
+    agregarItem("Producto 3", "Descripción del modelProducto 3");
 
     */
 

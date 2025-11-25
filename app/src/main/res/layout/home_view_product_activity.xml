@@ -188,7 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/black"
-                        android:text="Numero de productos disponibles" />
+                        android:text="Numero de modelProductos disponibles" />
 
                     <TextView
                         android:layout_width="wrap_content"

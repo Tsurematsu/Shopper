@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
-import com.uts.shopper.Models.Producto;
+import com.uts.shopper.Models.ModelProducto;
 import com.uts.shopper.helpers.TextHelper;
 
 public class HomeViewProductActivity extends AppCompatActivity {
@@ -44,20 +44,20 @@ public class HomeViewProductActivity extends AppCompatActivity {
             overridePendingTransition(0, 0);
         });
 
-        Producto producto = (Producto) getIntent().getSerializableExtra("PRODUCTO", Producto.class);
-        if (producto != null) {
+        ModelProducto modelProducto = (ModelProducto) getIntent().getSerializableExtra("PRODUCTO", ModelProducto.class);
+        if (modelProducto != null) {
            try {
-               ((TextView) findViewById(R.id.tileProduct)).setText(producto.titulo);
+               ((TextView) findViewById(R.id.tileProduct)).setText(modelProducto.titulo);
                Glide.with(this)
-                       .load(producto.imagenUrl)
+                       .load(modelProducto.imagenUrl)
                        .placeholder(R.drawable.test_puente_h)
                        .error(R.drawable.test_puente_h)
                        .centerCrop()
                        .into(((ImageView) findViewById(R.id.imageProduct)));
-               String formatPricing = "$" + TextHelper.formatearNumero(String.valueOf(producto.precioUnitairo));
+               String formatPricing = "$" + TextHelper.formatearNumero(String.valueOf(modelProducto.precioUnitairo));
                ((TextView) findViewById(R.id.precioUnitario)).setText(formatPricing);
-               ((TextView) findViewById(R.id.calificacion)).setText(String.valueOf(producto.calificacion));
-               ((TextView) findViewById(R.id.textDescription)).setText(producto.descripcion);
+               ((TextView) findViewById(R.id.calificacion)).setText(String.valueOf(modelProducto.calificacion));
+               ((TextView) findViewById(R.id.textDescription)).setText(modelProducto.descripcion);
 
            } catch (Exception e) {
                Log.d("APP_API_DEBUG", e.getMessage());

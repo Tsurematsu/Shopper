@@ -103,7 +103,7 @@ Fetch.setAuthToken("eyJhbGciOiJIUzI1NiIsInR...");
 Útil cuando no necesitas mapear la respuesta a un objeto o quieres inspeccionar el JSON crudo.
 
 ```java
-Fetch.GET("/productos", (response) -> {
+Fetch.GET("/modelProductos", (response) -> {
     if (response != null) {
         Log.d("API", "Respuesta cruda: " + response);
         // Recuerda: Esto corre en hilo secundario
@@ -118,9 +118,9 @@ Convierte automáticamente la respuesta JSON a una clase Java usando Gson.
 
 ```java
 // Supongamos que tienes una clase Producto.java
-Fetch.GET("/productos/1", (producto) -> {
-    if (producto != null) {
-        Log.d("API", "Producto: " + producto.getNombre());
+Fetch.GET("/modelProductos/1", (modelProducto) -> {
+    if (modelProducto != null) {
+        Log.d("API", "Producto: " + modelProducto.getNombre());
     }
 }, Producto.class);
 ```

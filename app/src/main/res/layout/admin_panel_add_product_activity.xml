@@ -116,7 +116,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Titulo del producto"/>
+                        android:text="Titulo del modelProducto"/>
 
                     <EditText
                         android:textColor="@color/black"
@@ -131,7 +131,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descripcion del producto"/>
+                        android:text="Descripcion del modelProducto"/>
 
                     <EditText
                         android:textColor="@color/black"
@@ -146,7 +146,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Precio del producto $"/>
+                        android:text="Precio del modelProducto $"/>
 
                     <EditText
                         android:textColor="@color/black"
