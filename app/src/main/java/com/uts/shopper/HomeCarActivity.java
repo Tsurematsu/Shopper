@@ -1,5 +1,6 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.uts.shopper.Acopladores.AcopladorCar;
 import com.uts.shopper.Acopladores.AcopladorMain;
 import com.uts.shopper.App.AppSessionCarritoManager;
 import com.uts.shopper.Models.ModelCarrito;
+import com.uts.shopper.Models.ModelProducto;
 import com.uts.shopper.helpers.TextHelper;
 
 import java.util.ArrayList;
@@ -106,6 +108,10 @@ public class HomeCarActivity extends AppCompatActivity {
 
         Consumer<ModelCarrito> ActionClick = producto->{
             Log.d("APP_API_DEBUG", "-> click");
+            Intent intent = new Intent(this, HomeViewProductActivity.class);
+            intent.putExtra("IDLOAD", producto.titulo);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         };
 
         Consumer<ModelCarrito> RemoveClick = producto->{

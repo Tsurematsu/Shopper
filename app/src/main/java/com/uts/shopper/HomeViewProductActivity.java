@@ -16,14 +16,20 @@
     import com.bumptech.glide.Glide;
     import com.uts.shopper.App.AppSessionCarritoManager;
     import com.uts.shopper.Components.ComponentNavbar;
+    import com.uts.shopper.Controllers.ControllerViewProduct;
     import com.uts.shopper.Models.ModelCarrito;
     import com.uts.shopper.Models.ModelProducto;
     import com.uts.shopper.helpers.TextHelper;
 
     import java.util.ArrayList;
+    import java.util.concurrent.atomic.AtomicReference;
+    import java.util.function.Consumer;
 
     public class HomeViewProductActivity extends AppCompatActivity {
+        ControllerViewProduct controllerViewProduct = new ControllerViewProduct();
         AppSessionCarritoManager appSessionCarritoManager;
+        ModelProducto modelProducto=null;
+        Consumer<ModelProducto> loadData = e->{};
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -51,75 +57,90 @@
                 overridePendingTransition(0, 0);
             });
 
-
-
-            ModelProducto modelProducto = (ModelProducto) getIntent().getSerializableExtra("PRODUCTO", ModelProducto.class);
-            if (modelProducto != null) {
-               try {
-                   ((TextView) findViewById(R.id.tileProduct)).setText(modelProducto.titulo);
-                   Glide.with(this)
-                           .load(modelProducto.imagenUrl)
-                           .placeholder(R.drawable.icon_download)
-                           .error(R.drawable.icon_download)
-                           .centerCrop()
-                           .into(((ImageView) findViewById(R.id.imageProduct)));
-                   String formatPricing = "$" + TextHelper.formatearNumero(String.valueOf(modelProducto.precioUnitairo));
-                   ((TextView) findViewById(R.id.precioUnitario)).setText(formatPricing);
-                   ((TextView) findViewById(R.id.calificacion)).setText(String.valueOf(modelProducto.calificacion));
-                   ((TextView) findViewById(R.id.textDescription)).setText(modelProducto.descripcion);
-
-               } catch (Exception e) {
-                   Log.d("APP_API_DEBUG", e.getMessage());
-               }
-
-            }
-
-            Runnable FunAddCard = ()->{
-                ArrayList<ModelCarrito> carList = new ArrayList<>();
-
-                try {
-                    carList = appSessionCarritoManager.getCarritoList();
-                } catch (Exception ex) {
-                    Log.e("APP_API_DEBUG", "Error al obtener producto ->" + ex.getMessage());
-                }
-
-                ModelCarrito producto = new ModelCarrito(
-                        modelProducto.id,
-                        modelProducto.titulo,
-                        1,
-                        modelProducto.costoEnvio,
-                        modelProducto.precioUnitairo,
-                        modelProducto.imagenUrl
-                );
-
-                boolean exist = false;
-                for (ModelCarrito prod : carList) {
-                    if (producto.titulo.equals(prod.titulo)){
-                        exist = true;
-                        break;
-                    }
-                }
-                if (!exist){
-                    carList.add(producto);
+            loadData = (modelProducto)->{
+                if (modelProducto != null) {
                     try {
-                        appSessionCarritoManager.setCarritoList(carList);
-                    } catch (Exception exc) {
-                        Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
+                        ((TextView) findViewById(R.id.tileProduct)).setText(modelProducto.titulo);
+                        Glide.with(this)
+                                .load(modelProducto.imagenUrl)
+                                .placeholder(R.drawable.icon_download)
+                                .error(R.drawable.icon_download)
+                                .centerCrop()
+                                .into(((ImageView) findViewById(R.id.imageProduct)));
+                        String formatPricing = "$" + TextHelper.formatearNumero(String.valueOf(modelProducto.precioUnitairo));
+                        ((TextView) findViewById(R.id.precioUnitario)).setText(formatPricing);
+                        ((TextView) findViewById(R.id.calificacion)).setText(String.valueOf(modelProducto.calificacion));
+                        ((TextView) findViewById(R.id.textDescription)).setText(modelProducto.descripcion);
+
+                    } catch (Exception e) {
+                        Log.d("APP_API_DEBUG", e.getMessage());
                     }
+
                 }
+                Runnable FunAddCard = ()->{
+                    ArrayList<ModelCarrito> carList = new ArrayList<>();
+
+                    try {
+                        carList = appSessionCarritoManager.getCarritoList();
+                    } catch (Exception ex) {
+                        Log.e("APP_API_DEBUG", "Error al obtener producto ->" + ex.getMessage());
+                    }
+
+                    ModelCarrito producto = new ModelCarrito(
+                            modelProducto.id,
+                            modelProducto.titulo,
+                            1,
+                            modelProducto.costoEnvio,
+                            modelProducto.precioUnitairo,
+                            modelProducto.imagenUrl
+                    );
+
+                    boolean exist = false;
+                    for (ModelCarrito prod : carList) {
+                        if (producto.titulo.equals(prod.titulo)){
+                            exist = true;
+                            break;
+                        }
+                    }
+                    if (!exist){
+                        carList.add(producto);
+                        try {
+                            appSessionCarritoManager.setCarritoList(carList);
+                        } catch (Exception exc) {
+                            Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
+                        }
+                    }
+                };
+                TextView btnAddtoCard = findViewById(R.id.btnAddtoCard);
+                btnAddtoCard.setOnClickListener(e->{
+                    FunAddCard.run();
+                });
+                TextView btnComprar = findViewById(R.id.btnComprar);
+                btnComprar.setOnClickListener(e->{
+                    FunAddCard.run();
+                    Intent intent = new Intent(this, HomeCarActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                });
             };
-            TextView btnAddtoCard = findViewById(R.id.btnAddtoCard);
-            btnAddtoCard.setOnClickListener(e->{
-                FunAddCard.run();
-            });
-            TextView btnComprar = findViewById(R.id.btnComprar);
-            btnComprar.setOnClickListener(e->{
-                FunAddCard.run();
-                Intent intent = new Intent(this, HomeCarActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-            });
+            if (getIntent().hasExtra("PRODUCTO")) {
+                modelProducto = (ModelProducto) getIntent().getSerializableExtra("PRODUCTO", ModelProducto.class);
+                loadData.accept(modelProducto);
+            }
+            if (getIntent().hasExtra("IDLOAD")) {
+                String idTitleProd = getIntent().getStringExtra("IDLOAD");
+                controllerViewProduct.CargarProductos((ListProductos)->{
+                    for (ModelProducto producto : ListProductos) {
+                        if (producto.titulo.equals(idTitleProd)){
+                            modelProducto = producto;
+                            break;
+                        }
+                    }
+                    runOnUiThread(() -> {
+                        loadData.accept(modelProducto);
+                    });
 
-
+                });
+            }
         }
     }
