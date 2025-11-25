@@ -2,6 +2,7 @@ package com.uts.shopper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +11,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.Acopladores.AcopladorMain;
+import com.uts.shopper.App.AppSessionUserManager;
 import com.uts.shopper.Auxiliar.AuxMain;
 import com.uts.shopper.Components.ComponentNavbar;
 import com.uts.shopper.Controllers.ControllerMain;
+import com.uts.shopper.Models.ModelSessionUser;
 
 public class MainActivity extends AppCompatActivity {
     private final AuxMain auxMain = new AuxMain(this);

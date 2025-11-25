@@ -13,10 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.uts.shopper.App.AppData;
+import com.uts.shopper.App.AppSessionUserManager;
 import com.uts.shopper.Controllers.ControllerLogin;
 import com.uts.shopper.Models.ModelRequestLoginUser;
+import com.uts.shopper.Models.ModelSessionUser;
 
 public class UserLoginActivity extends AppCompatActivity {
+    private final AppSessionUserManager appSessionUserManager = new AppSessionUserManager(this);
     ControllerLogin controllerLogin = new ControllerLogin();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,14 @@ public class UserLoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Usuario o contraseña invalidos", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
+                        appSessionUserManager.saveUserSession(new ModelSessionUser(
+                                response.id,
+                                response.email,
+                                response.usuario,
+                                response.isAdmin
+                        ));
+
                         if (response.isAdmin){
                             Toast.makeText(this, "WELLCOME Admin", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(UserLoginActivity.this, AdminPanelActivity.class);
@@ -60,14 +72,27 @@ public class UserLoginActivity extends AppCompatActivity {
                             finish();
                             return;
                         }
+
                         Toast.makeText(this, "WELLCOME Client", Toast.LENGTH_SHORT).show();
                         finish();
                     });
                 } catch (Exception ex) {
-                    Log.d("APP_API_DEBUG", "-> LOGIN error:" + ex.getMessage());
+                    Log.e("APP_API_DEBUG", "-> LOGIN error:" + ex.getMessage());
                 }
 
             });
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ModelSessionUser user = appSessionUserManager.getUserSession();
+        if (!user.usuario.isEmpty()){
+            Intent intent = new Intent(UserLoginActivity.this, user.isAdmin? AdminPanelActivity.class: ClientPanelActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 }
