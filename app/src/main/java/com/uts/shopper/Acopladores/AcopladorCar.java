@@ -79,7 +79,7 @@ public class AcopladorCar {
                             .centerCrop()
                             .into(img_itemCarImagen);
 
-                    itemView.setOnClickListener(view -> {
+                    img_itemCarImagen.setOnClickListener(view -> {
                         ActionClick.accept(producto);
                     });
 

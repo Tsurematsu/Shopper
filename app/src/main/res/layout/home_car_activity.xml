@@ -23,6 +23,7 @@
 
 
             <ImageView
+                android:id="@+id/volver"
                 android:layout_height="match_parent"
                 android:layout_width="50dp"
                 android:layout_gravity="center"
@@ -86,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:text="Productos (x)"/>
+                    android:text="Productos (0)"/>
 
                 <TextView
                     android:id="@+id/text_sumSubProductos"
@@ -95,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:text="$3.403.00"/>
+                    android:text="$0"/>
             </GridLayout>
 
             <GridLayout
@@ -111,15 +112,16 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:text="Total envio (1)"/>
+                    android:text="Total envio (0)"/>
 
                 <TextView
+                    android:id="@+id/text_sumSubEnvios"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:text="$11.000.00"/>
+                    android:text="0"/>
             </GridLayout>
 
             <GridLayout
@@ -137,12 +139,13 @@
                     android:text="Total"/>
 
                 <TextView
+                    android:id="@+id/text_sumTotal"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:text="$14.403.00"/>
+                    android:text="$0"/>
             </GridLayout>
 
             <TextView

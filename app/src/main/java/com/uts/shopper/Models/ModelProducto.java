@@ -3,7 +3,7 @@ package com.uts.shopper.Models;
 import java.io.Serializable;
 
 public class ModelProducto implements Serializable {
-    public String id;
+    public String id="0";
     public String titulo;
     public String descripcion;
     public String imagenUrl;
