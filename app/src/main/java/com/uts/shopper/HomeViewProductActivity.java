@@ -50,8 +50,8 @@ public class HomeViewProductActivity extends AppCompatActivity {
                ((TextView) findViewById(R.id.tileProduct)).setText(modelProducto.titulo);
                Glide.with(this)
                        .load(modelProducto.imagenUrl)
-                       .placeholder(R.drawable.test_puente_h)
-                       .error(R.drawable.test_puente_h)
+                       .placeholder(R.drawable.icon_download)
+                       .error(R.drawable.icon_download)
                        .centerCrop()
                        .into(((ImageView) findViewById(R.id.imageProduct)));
                String formatPricing = "$" + TextHelper.formatearNumero(String.valueOf(modelProducto.precioUnitairo));

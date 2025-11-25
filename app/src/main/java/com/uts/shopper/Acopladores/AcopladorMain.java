@@ -41,8 +41,8 @@ public class AcopladorMain {
                     txtPrecio.setText(typePricing);
                     Glide.with(parent)
                             .load(modelProducto.imagenUrl)
-                            .placeholder(R.drawable.test_puente_h)
-                            .error(R.drawable.test_puente_h)
+                            .placeholder(R.drawable.icon_download)
+                            .error(R.drawable.icon_download)
                             .centerCrop()
                             .into(imgProducto);
 
