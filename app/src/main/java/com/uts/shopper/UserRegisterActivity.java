@@ -1,7 +1,6 @@
 package com.uts.shopper;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,7 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.Controllers.ControllerRegister;
-import com.uts.shopper.Models.ModelRegisterUser;
+import com.uts.shopper.Models.ModelRegisterUserRequest;
 
 public class UserRegisterActivity extends AppCompatActivity {
     private final ControllerRegister controllerRegister = new ControllerRegister();
@@ -46,7 +45,7 @@ public class UserRegisterActivity extends AppCompatActivity {
             String text_password = String.valueOf(password.getText());
             boolean bool_isAdmin = isAdmin.isChecked();
 
-            ModelRegisterUser userData = new ModelRegisterUser(
+            ModelRegisterUserRequest userData = new ModelRegisterUserRequest(
                     text_correo,
                     text_nombre,
                     text_password,
