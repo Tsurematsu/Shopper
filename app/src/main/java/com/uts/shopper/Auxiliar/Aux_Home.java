@@ -19,36 +19,7 @@ public class Aux_Home {
     public Aux_Home(AppCompatActivity parent){
         this.parent = parent;
     }
-    public void connection(){
-        String[] posiblesServidores = {
-                "http://localhost:8080", //Conexion para desarrollo local
-                "http://192.168.0.35:8080", //Conexion de prueba en parcial
-                "http://192.168.80.23:8080", // Conexion de test PC de mesa
-                "http://10.11.9.31:8080", // Conexion PORTABLE
-        };
-        Fetch.findWorkingHost(posiblesServidores, (url) -> {
-            parent.runOnUiThread(()->this.hacerPeticionDePrueba(url));}, () -> {
-            parent.runOnUiThread(() -> {
-                Log.e("API_DEBUG", "ERROR DE CONEXION CON EL SERVIDOR.");
-                Toast.makeText(parent, "Servidor no disponible", Toast.LENGTH_LONG).show();
-            });
-        });
-    }
-    private void hacerPeticionDePrueba(String url) {
-        Log.d("API_DEBUG", "Conectado a: " + url);
-        Toast.makeText(parent, "Conectado a: " + url, Toast.LENGTH_SHORT).show();
 
-        Fetch.GET("/api", (response) -> {
-            if (response != null) {
-                Log.d("API_DEBUG", "Respuesta cruda: " + response);
-                parent.runOnUiThread(() -> {
-                    Toast.makeText(parent, "Respuesta cruda: " + response, Toast.LENGTH_SHORT).show();
-                });
-            } else {
-                Log.e("API_DEBUG", "Error en la petición");
-            }
-        });
-    }
     public void loadProducts() {
         try {
             GridLayout contenedorItems = parent.findViewById(R.id.panelProducts);
