@@ -72,29 +72,31 @@
 
             TextView btnAddtoCard = findViewById(R.id.btnAddtoCard);
             btnAddtoCard.setOnClickListener(e->{
+                ArrayList<ModelCarrito> carList = new ArrayList<>();
+
                 try {
-                    ArrayList<ModelCarrito> carritoList = appSessionCarritoManager.getCarritoList();
-                    Log.e("APP_API_DEBUG", "Elementos actuales:" + String.valueOf(carritoList.size()));
+                    carList = appSessionCarritoManager.getCarritoList();
                 } catch (Exception ex) {
                     Log.e("APP_API_DEBUG", "Error al obtener producto ->" + ex.getMessage());
-
-                    ModelCarrito producto = new ModelCarrito(
-                            modelProducto.id,
-                            modelProducto.titulo,
-                            1,
-                            modelProducto.costoEnvio,
-                            modelProducto.precioUnitairo,
-                            modelProducto.imagenUrl
-                    );
-                    ArrayList<ModelCarrito> carList = new ArrayList<>();
-                    carList.add(producto);
-
-                    try {
-                        appSessionCarritoManager.setCarritoList(carList);
-                    } catch (Exception exc) {
-                        Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
-                    }
                 }
+
+                Log.d("APP_API_DEBUG", "Elementos actuales:" + String.valueOf(carList.size()));
+
+                ModelCarrito producto = new ModelCarrito(
+                        modelProducto.id,
+                        modelProducto.titulo,
+                        1,
+                        modelProducto.costoEnvio,
+                        modelProducto.precioUnitairo,
+                        modelProducto.imagenUrl
+                );
+                carList.add(producto);
+                try {
+                    appSessionCarritoManager.setCarritoList(carList);
+                } catch (Exception exc) {
+                    Log.e("APP_API_DEBUG", "Error al añadir producto al carrito ->" + exc.getMessage());
+                }
+
             });
 
         }
