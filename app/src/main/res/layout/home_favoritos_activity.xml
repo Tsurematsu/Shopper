@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Notificaciones"
+                android:text="Favoritos"
                 android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textAlignment="center"

@@ -10,19 +10,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.Components.ComponentNavbar;
 
-public class HomeNotificationsActivity extends AppCompatActivity {
+public class HomeFavoritosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.home_notifications_activity);
+        setContentView(R.layout.home_favoritos_activity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        ComponentNavbar.apply(this, "entrada");
+        ComponentNavbar.apply(this, "favoritos");
     }
 }

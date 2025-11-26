@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.uts.shopper.HomeCarActivity;
+import com.uts.shopper.HomeFavoritosActivity;
 import com.uts.shopper.HomeNotificationsActivity;
 import com.uts.shopper.HomeViewProductActivity;
 import com.uts.shopper.MainActivity;
@@ -22,6 +24,14 @@ public class ComponentNavbar {
         LinearLayout entrada = parent.findViewById(R.id.entrada);
         LinearLayout mas = parent.findViewById(R.id.mas);
 
+        parent.getOnBackPressedDispatcher().addCallback(parent, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                parent.finish();
+                parent.overridePendingTransition(0, 0);
+            }
+        });
+
         inicio.setOnClickListener(v->{
             if (ActualPanel.equals("inicio")) return;
             Intent intent = new Intent(parent, MainActivity.class);
@@ -31,7 +41,7 @@ public class ComponentNavbar {
 
         favoritos.setOnClickListener(v->{
             if (ActualPanel.equals("favoritos")) return;
-            Intent intent = new Intent(parent, HomeCarActivity.class);
+            Intent intent = new Intent(parent, HomeFavoritosActivity.class);
             parent.startActivity(intent);
             parent.overridePendingTransition(0, 0);
         });

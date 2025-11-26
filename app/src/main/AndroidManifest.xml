@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Shopper"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HomeFavoritosActivity"
+            android:exported="false" />
+        <activity
             android:name=".ClientPanelActivity"
             android:exported="false" />
         <activity

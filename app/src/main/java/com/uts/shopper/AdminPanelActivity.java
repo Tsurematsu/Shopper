@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.uts.shopper.App.AppSessionUserManager;
+import com.uts.shopper.Components.ComponentNavbar;
 
 public class AdminPanelActivity extends AppCompatActivity {
     AppSessionUserManager appSessionUserManager;
@@ -24,6 +25,8 @@ public class AdminPanelActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ComponentNavbar.apply(this, "mas");
 
         ImageView logout = findViewById(R.id.logout);
         logout.setOnClickListener(e->{
