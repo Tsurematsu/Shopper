@@ -1,5 +1,6 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -27,6 +28,12 @@ public class AdminPanelActivity extends AppCompatActivity {
         });
 
         ComponentNavbar.apply(this, "mas");
+
+        ImageView adminButton = findViewById(R.id.addproduct);
+        adminButton.setOnClickListener(e->{
+            Intent intent = new Intent(AdminPanelActivity.this, AdminPanelAddProductActivity.class);
+            startActivity(intent);
+        });
 
         ImageView logout = findViewById(R.id.logout);
         logout.setOnClickListener(e->{

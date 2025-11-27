@@ -23,59 +23,87 @@
         android:theme="@style/Theme.Shopper"
         android:usesCleartextTraffic="true">
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".HomeFavoritosActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".ClientPanelActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".AdminPanelAddProductActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".AdminPanelActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".UserLoginActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".UserRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".TestAcivity"
-            android:exported="false" />
-        <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".PayFacturaction"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".PayPse"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".ShoppingSeeDeliveryDate"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".ShoppingSelectLocation"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".ShoppingDeliveryAddress"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".HomeViewProductActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".HomeCarActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".HomeNotificationsActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".HomeSearchActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
