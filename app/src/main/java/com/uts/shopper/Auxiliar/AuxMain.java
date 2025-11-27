@@ -32,11 +32,9 @@ public class AuxMain {
         }
 
         String[] posiblesServidores = {
-                "http://192.168.80.10:8080", // Conexion de test PC de mesa
-                "http://localhost:8080", //Conexion para desarrollo local
                 "http://192.168.0.35:8080", //Conexion de prueba en parcial
                 "http://192.168.80.23:8080", // Conexion de test PC de mesa
-                "http://10.11.9.31:8080", // Conexion PORTABLE
+                "http://10.10.23.32:8080", // Conexion PORTABLE
         };
 
         Fetch.findWorkingHost(posiblesServidores, (url) -> {
