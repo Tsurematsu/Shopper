@@ -22,24 +22,28 @@ public class AcopladorMain {
     public AcopladorMain(MainActivity parent ){
         this.parent = parent;
     }
-    public void AddLayoutProductos(ArrayList<ModelProducto> modelProductos, Consumer<ModelProducto> ActionClick){
+    public void AddLayoutProductos(ArrayList<ModelProducto> listaProductos, Consumer<ModelProducto> ActionClick){
         parent.runOnUiThread(() -> {
             try {
                 GridLayout contenedorItems = parent.findViewById(R.id.panelProducts);
                 contenedorItems.removeAllViews();
-                for (ModelProducto modelProducto : modelProductos) {
+                for (ModelProducto modelProducto : listaProductos) {
+
                     View itemView = parent.getLayoutInflater().inflate(R.layout.component_home_card_product, contenedorItems, false);
                     itemView.setLayoutParams(createGridParams());
                     TextView txtTitulo = itemView.findViewById(R.id.textTitle);
                     TextView txtDescripcion = itemView.findViewById(R.id.textDescription);
                     TextView txtPrecio = itemView.findViewById(R.id.textAmount);
                     ImageView imgProducto = itemView.findViewById(R.id.imageView);
-
                     txtTitulo.setText(modelProducto.titulo);
-                    String resumeDescription = modelProducto.descripcion.substring(0, 32) + "...";
+                    String resumeDescription = modelProducto.descripcion;
+                    if (modelProducto.descripcion.length() >= 32){
+                        resumeDescription = modelProducto.descripcion.substring(0, 32) + "...";
+                    }
                     txtDescripcion.setText(resumeDescription);
                     String typePricing = "$" + TextHelper.formatearNumero(String.valueOf(modelProducto.precioUnitairo));
                     txtPrecio.setText(typePricing);
+
                     Glide.with(parent)
                             .load(modelProducto.imagenUrl)
                             .placeholder(R.drawable.icon_download)
@@ -47,13 +51,16 @@ public class AcopladorMain {
                             .centerCrop()
                             .into(imgProducto);
 
+
                     itemView.setOnClickListener(view -> {
                         ActionClick.accept(modelProducto);
                     });
+
                     contenedorItems.addView(itemView);
+
                 }
             } catch (Exception e) {
-                Log.e("APP_API_DEBUG", "Error en la petición:" + e.getMessage());
+                Log.e("APP_API_DEBUG", "(AcopladorMain) Error en la petición:" + e.getMessage() + "\n" + e.getLocalizedMessage());
             }
         });
     }

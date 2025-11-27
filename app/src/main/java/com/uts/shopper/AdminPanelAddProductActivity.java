@@ -1,10 +1,9 @@
 package com.uts.shopper;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,13 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.uts.shopper.Controllers.ControllerAdmin;
-import com.uts.shopper.helpers.Fetch;
+import com.uts.shopper.Models.ModelProducto;
 import com.uts.shopper.helpers.FileHelper;
 
-import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class AdminPanelAddProductActivity extends AppCompatActivity {
     private  final ControllerAdmin controllerAdmin = new ControllerAdmin();
@@ -35,31 +32,40 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Gson gson = new Gson();
         ImageView btn_imagen = findViewById(R.id.loadImage);
         fileHelper = FileHelper.getInstance(this);
-
+        AtomicReference<String> imagenUrl = new AtomicReference<>("");
         btn_imagen.setOnClickListener(e->{
-            fileHelper.requestImage(path->{
-                Fetch.upload("/api/upload", "archivo", path, response->{
-                    Map<String, Object> map = gson.fromJson(json, new TypeToken<Map<String, Object>>(){}.getType());
-                    Log.d("APP_API_DEBUG", "Response server ->" + response);
-                });
-                runOnUiThread(() -> {
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    btn_imagen.setImageBitmap(bitmap);
+            controllerAdmin.uploadImage(fileHelper, btn_imagen, this, imagenUrl::set);
+        });
 
-                    /*
-                    Glide.with(this)
-                            .load(url)
-                            .placeholder(R.drawable.icon_download)
-                            .error(R.drawable.icon_download)
-                            .centerCrop()
-                            .into(imgProducto);
-                     */
-                });
-                Log.d("APP_API_DEBUG", path);
-            });
+        TextView addToProduct = findViewById(R.id.addToProduct);
+        addToProduct.setOnClickListener(e->{
+            EditText tituloProducto = findViewById(R.id.tituloProducto);
+            EditText descripcionProducto = findViewById(R.id.descripcionProducto);
+            EditText precioUnitario = findViewById(R.id.PrecioUnitario);
+            EditText costoEnvio = findViewById(R.id.costoEnvio);
+            EditText cantidad = findViewById(R.id.cantidad);
+            EditText calificacion = findViewById(R.id.calificacion);
+
+            String text_tituloProducto = String.valueOf(tituloProducto.getText());
+            String text_descripcionProducto = String.valueOf(descripcionProducto.getText());
+            String text_precioUnitario = String.valueOf(precioUnitario.getText());
+            String text_costoEnvio = String.valueOf(costoEnvio.getText());
+            String text_cantidad = String.valueOf(cantidad.getText());
+            String text_calificacion = String.valueOf(calificacion.getText());
+
+            ModelProducto newProducto = new ModelProducto(
+                    text_tituloProducto,
+                    text_descripcionProducto,
+                    imagenUrl.get(),
+                    Double.parseDouble(text_precioUnitario),
+                    Double.parseDouble(text_costoEnvio),
+                    Integer.parseInt(text_cantidad),
+                    Double.parseDouble(text_calificacion)
+            );
+
+            controllerAdmin.addProduct(newProducto);
         });
     }
 

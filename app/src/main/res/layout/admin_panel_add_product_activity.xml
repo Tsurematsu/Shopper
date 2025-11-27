@@ -79,6 +79,7 @@
                             android:text="Cantidad"/>
 
                         <EditText
+                            android:id="@+id/cantidad"
                             android:textColor="@color/black"
                             android:layout_width="100dp"
                             android:inputType="number"
@@ -93,6 +94,7 @@
                             android:text="Calificación"/>
 
                         <EditText
+                            android:id="@+id/calificacion"
                             android:textColor="@color/black"
                             android:layout_width="100dp"
                             android:inputType="number"
@@ -120,6 +122,7 @@
                         android:text="Titulo del modelProducto"/>
 
                     <EditText
+                        android:id="@+id/tituloProducto"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:inputType="text"
@@ -135,6 +138,7 @@
                         android:text="Descripcion del modelProducto"/>
 
                     <EditText
+                        android:id="@+id/descripcionProducto"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:inputType="text"
@@ -150,6 +154,7 @@
                         android:text="Precio del modelProducto $"/>
 
                     <EditText
+                        android:id="@+id/PrecioUnitario"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:inputType="number"
@@ -165,6 +170,7 @@
                         android:text="Costo de envio $"/>
 
                     <EditText
+                        android:id="@+id/costoEnvio"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:inputType="number"
@@ -183,6 +189,7 @@
                     android:rowCount="1">
 
                     <TextView
+                        android:id="@+id/addToProduct"
                         android:layout_marginEnd="10dp"
                         android:layout_marginStart="10dp"
                         android:textAlignment="center"
