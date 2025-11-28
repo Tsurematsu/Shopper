@@ -125,6 +125,7 @@ public class Fetch {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
+                Log.e("APP_API_DEBUG", "Error POST string ->\n"+  e.getMessage());
             }
 
             @Override
@@ -224,44 +225,48 @@ public class Fetch {
      * Realiza una petición POST enviando un objeto y retorna la respuesta parseada como un Map.
      */
     public static void PostMap(Object objeto, String endPoint, Consumer<Map<String, Object>> onResponse) {
-        String jsonString = gson.toJson(objeto);
-        RequestBody body = RequestBody.create(jsonString, JSON_TYPE);
+        try {
+            String jsonString = gson.toJson(objeto);
+            RequestBody body = RequestBody.create(jsonString, JSON_TYPE);
 
-        Request.Builder requestBuilder = new Request.Builder()
-                .url(urlAPI + endPoint)
-                .post(body);
+            Request.Builder requestBuilder = new Request.Builder()
+                    .url(urlAPI + endPoint)
+                    .post(body);
 
-        if (authToken != null && !authToken.isEmpty()) {
-            requestBuilder.addHeader("Authorization", "Bearer " + authToken);
-        }
-
-        Request request = requestBuilder.build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                onResponse.accept(null);
+            if (authToken != null && !authToken.isEmpty()) {
+                requestBuilder.addHeader("Authorization", "Bearer " + authToken);
             }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if (response.isSuccessful() && response.body() != null) {
-                    String responseBody = response.body().string();
-                    try {
-                        // Usamos TypeToken para decirle a Gson que queremos un Map<String, Object>
-                        Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
-                        Map<String, Object> map = gson.fromJson(responseBody, mapType);
-                        onResponse.accept(map);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        onResponse.accept(null);
-                    }
-                } else {
+            Request request = requestBuilder.build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    e.printStackTrace();
                     onResponse.accept(null);
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (response.isSuccessful() && response.body() != null) {
+                        String responseBody = response.body().string();
+                        try {
+                            // Usamos TypeToken para decirle a Gson que queremos un Map<String, Object>
+                            Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
+                            Map<String, Object> map = gson.fromJson(responseBody, mapType);
+                            onResponse.accept(map);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            onResponse.accept(null);
+                        }
+                    } else {
+                        onResponse.accept(null);
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("APP_API_DEBUG", "(Fetch PostMap)\n" + e.getMessage());
+        }
     }
 
     // =========================================================================

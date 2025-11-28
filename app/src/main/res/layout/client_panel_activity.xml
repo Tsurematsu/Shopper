@@ -60,6 +60,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/username"
                     android:textColor="@color/black"
                     android:layout_marginBottom="20dp"
                     android:textSize="30sp"
@@ -77,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="Correo de usuario"/>
                 <EditText
+                    android:id="@+id/correo"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:textColor="@color/black"
@@ -93,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="Antigua contraseña"/>
                 <EditText
+                    android:id="@+id/password"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:textColor="@color/black"
@@ -109,6 +112,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nueva contraseña"/>
                 <EditText
+                    android:id="@+id/confirmPassword"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:textColor="@color/black"
@@ -117,6 +121,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/guardarCambios"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"
@@ -130,12 +135,13 @@
                     android:text="Guardar cambios"/>
 
                 <TextView
+                    android:id="@+id/eliminarUsuario"
                     android:layout_margin="20dp"
                     android:padding="10dp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:background="@drawable/draw_home_prod_button"
-                    android:textSize="30sp"
+                    android:background="@drawable/draw_home_prod_button1"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Eliminar cuenta"/>
