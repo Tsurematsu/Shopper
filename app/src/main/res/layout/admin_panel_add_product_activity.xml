@@ -151,7 +151,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Precio del modelProducto $"/>
+                        android:text="Precio del producto $"/>
 
                     <EditText
                         android:id="@+id/PrecioUnitario"
@@ -204,6 +204,7 @@
                         android:text="Agregar"/>
 
                     <TextView
+                        android:id="@+id/cancelarButton"
                         android:layout_marginEnd="10dp"
                         android:layout_marginStart="10dp"
                         android:textAlignment="center"

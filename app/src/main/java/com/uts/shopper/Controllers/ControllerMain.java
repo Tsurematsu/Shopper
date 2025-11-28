@@ -36,7 +36,6 @@ public class ControllerMain {
                             bumber_calificacion,
                             number_id
                     );
-                    Log.d("APP_API_DEBUG", "(ControllerMain) id - ->" + number_id);
                     modelProductos.add(onProduct);
                 }
                 callback.accept(modelProductos);

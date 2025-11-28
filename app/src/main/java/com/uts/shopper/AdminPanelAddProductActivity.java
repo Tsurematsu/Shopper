@@ -1,5 +1,6 @@
 package com.uts.shopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -65,7 +66,14 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
                     Double.parseDouble(text_calificacion)
             );
 
-            controllerAdmin.addProduct(newProducto);
+            controllerAdmin.addProduct(newProducto, ()->{
+                finish();
+            });
+        });
+
+        TextView cancelarButton = findViewById(R.id.cancelarButton);
+        cancelarButton.setOnClickListener(e->{
+            finish();
         });
     }
 

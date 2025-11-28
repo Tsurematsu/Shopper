@@ -19,6 +19,7 @@
 
             <!-- Fila 1: Título y Cantidad -->
             <TextView
+                android:id="@+id/tituloProducto"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -29,15 +30,17 @@
                 android:layout_marginEnd="8dp"/>
 
             <TextView
+                android:id="@+id/cantidad"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="cantidad"
+                android:text="cantidad (0)"
                 android:textSize="14sp"
                 android:layout_marginEnd="8dp"/>
 
             <!-- Imagen que ocupa 5 filas -->
             <ImageView
+                android:id="@+id/imgProduct"
                 android:layout_gravity="end|center_vertical"
                 android:layout_height="100dp"
                 android:layout_width="100dp"
@@ -47,6 +50,7 @@
 
             <!-- Fila 2: Descripción (ocupa 2 columnas) -->
             <TextView
+                android:id="@+id/dexcripcionProducto"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -59,34 +63,41 @@
 
             <!-- Fila 3: Precio -->
             <TextView
+                android:id="@+id/precioUnitario"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="precio"
+                android:text="precio (0)"
                 android:textSize="14sp"
                 android:layout_columnSpan="2"
                 android:layout_columnWeight="1"/>
 
             <!-- Fila 4: Costo Envío -->
             <TextView
+                android:id="@+id/costoEnvio"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="costo envio"
+                android:text="costo envio (0)"
                 android:textSize="14sp"
                 android:layout_columnSpan="2"
                 android:layout_columnWeight="1"/>
 
             <!-- Fila 5: Calificación -->
             <TextView
+                android:id="@+id/calificacion"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="calificacion"
+                android:text="calificacion (0)"
                 android:textSize="14sp"
                 android:layout_columnSpan="2"
                 android:layout_columnWeight="1"/>
 
+            <Button
+                android:id="@+id/deleteProduct"
+                android:layout_marginTop="10dp"
+                android:text="Eliminar producto"/>
         </GridLayout>
     </LinearLayout>
 

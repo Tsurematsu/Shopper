@@ -59,6 +59,7 @@
             android:layout_rowWeight="1">
 
             <LinearLayout
+                android:id="@+id/contenedorProductos"
                 android:paddingBottom="50dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
