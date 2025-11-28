@@ -62,7 +62,9 @@ public class AdminPanelActivity extends AppCompatActivity {
         super.onResume();
         controllerAdmin.getProductos(listaProductos->{
             Consumer<ModelProducto> ActionClick = producto->{
-
+                Intent intent = new Intent(AdminPanelActivity.this, AdminPanelAddProductActivity.class);
+                intent.putExtra("ID_PRODUCTO", producto.id);
+                startActivity(intent);
             };
             Consumer<ParamActionContinue> ActionDelete = actionContinue->{
                 new AlertDialog.Builder(this)

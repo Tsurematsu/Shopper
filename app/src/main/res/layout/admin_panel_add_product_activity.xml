@@ -119,7 +119,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Titulo del modelProducto"/>
+                        android:text="Titulo del producto"/>
 
                     <EditText
                         android:id="@+id/tituloProducto"
@@ -135,7 +135,7 @@
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descripcion del modelProducto"/>
+                        android:text="Descripcion del Producto"/>
 
                     <EditText
                         android:id="@+id/descripcionProducto"

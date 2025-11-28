@@ -33,47 +33,79 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (getIntent().hasExtra("ID_PRODUCTO")){
+            String idProd = (String) getIntent().getStringExtra("ID_PRODUCTO");
+            onUpdate(idProd);
+        }else{
+            onCrate();
+        }
+
+        TextView cancelarButton = findViewById(R.id.cancelarButton);
+        cancelarButton.setOnClickListener(e->{
+            finish();
+        });
+
+    }
+
+    private AtomicReference<String> uploadImage(){
         ImageView btn_imagen = findViewById(R.id.loadImage);
         fileHelper = FileHelper.getInstance(this);
         AtomicReference<String> imagenUrl = new AtomicReference<>("");
         btn_imagen.setOnClickListener(e->{
             controllerAdmin.uploadImage(fileHelper, btn_imagen, this, imagenUrl::set);
         });
+        return imagenUrl;
+    }
+    private ModelProducto getDataForm(AtomicReference<String> imagenUrl){
+        EditText tituloProducto = findViewById(R.id.tituloProducto);
+        EditText descripcionProducto = findViewById(R.id.descripcionProducto);
+        EditText precioUnitario = findViewById(R.id.PrecioUnitario);
+        EditText costoEnvio = findViewById(R.id.costoEnvio);
+        EditText cantidad = findViewById(R.id.cantidad);
+        EditText calificacion = findViewById(R.id.calificacion);
 
+        String text_tituloProducto = String.valueOf(tituloProducto.getText());
+        String text_descripcionProducto = String.valueOf(descripcionProducto.getText());
+        String text_precioUnitario = String.valueOf(precioUnitario.getText());
+        String text_costoEnvio = String.valueOf(costoEnvio.getText());
+        String text_cantidad = String.valueOf(cantidad.getText());
+        String text_calificacion = String.valueOf(calificacion.getText());
+
+        return new ModelProducto(
+                text_tituloProducto,
+                text_descripcionProducto,
+                imagenUrl.get(),
+                Double.parseDouble(text_precioUnitario),
+                Double.parseDouble(text_costoEnvio),
+                Integer.parseInt(text_cantidad),
+                Double.parseDouble(text_calificacion)
+        );
+
+    }
+
+    private void onUpdate(String id){
+
+
+        AtomicReference<String> imagenUrl = uploadImage();
         TextView addToProduct = findViewById(R.id.addToProduct);
         addToProduct.setOnClickListener(e->{
-            EditText tituloProducto = findViewById(R.id.tituloProducto);
-            EditText descripcionProducto = findViewById(R.id.descripcionProducto);
-            EditText precioUnitario = findViewById(R.id.PrecioUnitario);
-            EditText costoEnvio = findViewById(R.id.costoEnvio);
-            EditText cantidad = findViewById(R.id.cantidad);
-            EditText calificacion = findViewById(R.id.calificacion);
-
-            String text_tituloProducto = String.valueOf(tituloProducto.getText());
-            String text_descripcionProducto = String.valueOf(descripcionProducto.getText());
-            String text_precioUnitario = String.valueOf(precioUnitario.getText());
-            String text_costoEnvio = String.valueOf(costoEnvio.getText());
-            String text_cantidad = String.valueOf(cantidad.getText());
-            String text_calificacion = String.valueOf(calificacion.getText());
-
-            ModelProducto newProducto = new ModelProducto(
-                    text_tituloProducto,
-                    text_descripcionProducto,
-                    imagenUrl.get(),
-                    Double.parseDouble(text_precioUnitario),
-                    Double.parseDouble(text_costoEnvio),
-                    Integer.parseInt(text_cantidad),
-                    Double.parseDouble(text_calificacion)
-            );
-
+            ModelProducto newProducto = getDataForm(imagenUrl);
+            /*
             controllerAdmin.addProduct(newProducto, ()->{
                 finish();
             });
+             */
         });
 
-        TextView cancelarButton = findViewById(R.id.cancelarButton);
-        cancelarButton.setOnClickListener(e->{
-            finish();
+    }
+
+    private void onCrate(){
+        AtomicReference<String> imagenUrl = uploadImage();
+        TextView addToProduct = findViewById(R.id.addToProduct);
+        addToProduct.setOnClickListener(e->{
+            ModelProducto newProducto = getDataForm(imagenUrl);
+            controllerAdmin.addProduct(newProducto, this::finish);
         });
     }
 
