@@ -14,90 +14,86 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:rowCount="5">
+            android:columnCount="2">
 
-            <!-- Fila 1: Título y Cantidad -->
+        <GridLayout
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:columnCount="1">
+
             <TextView
                 android:id="@+id/tituloProducto"
                 android:textColor="@color/black"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titulo del modelProducto"
+                android:text="Titulo del Producto"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_columnWeight="1"
                 android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:id="@+id/cantidad"
                 android:textColor="@color/black"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="cantidad (0)"
                 android:textSize="14sp"
                 android:layout_marginEnd="8dp"/>
 
-            <!-- Imagen que ocupa 5 filas -->
+            <TextView
+                android:id="@+id/dexcripcionProducto"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="descripcion del modelProducto"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/precioUnitario"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="precio (0)"
+                android:textSize="14sp"/>
+
+            <!-- Fila 4: Costo Envío -->
+            <TextView
+                android:id="@+id/costoEnvio"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="costo envio (0)"
+                android:textSize="14sp"/>
+
+            <!-- Fila 5: Calificación -->
+            <TextView
+                android:id="@+id/calificacion"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="calificacion (0)"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/deleteProduct"
+                android:layout_marginTop="10dp"
+                android:text="Eliminar producto"/>
+
+        </GridLayout>
+
             <ImageView
                 android:id="@+id/imgProduct"
-                android:layout_gravity="end|center_vertical"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="100dp"
                 android:layout_width="100dp"
                 android:layout_rowSpan="5"
                 android:background="#E0E0E0"
                 android:scaleType="centerCrop"/>
 
-            <!-- Fila 2: Descripción (ocupa 2 columnas) -->
-            <TextView
-                android:id="@+id/dexcripcionProducto"
-                android:textColor="@color/black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="descripcion del modelProducto"
-                android:textSize="14sp"
-                android:layout_columnSpan="2"
-                android:layout_columnWeight="1"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- Fila 3: Precio -->
-            <TextView
-                android:id="@+id/precioUnitario"
-                android:textColor="@color/black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="precio (0)"
-                android:textSize="14sp"
-                android:layout_columnSpan="2"
-                android:layout_columnWeight="1"/>
-
-            <!-- Fila 4: Costo Envío -->
-            <TextView
-                android:id="@+id/costoEnvio"
-                android:textColor="@color/black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="costo envio (0)"
-                android:textSize="14sp"
-                android:layout_columnSpan="2"
-                android:layout_columnWeight="1"/>
-
-            <!-- Fila 5: Calificación -->
-            <TextView
-                android:id="@+id/calificacion"
-                android:textColor="@color/black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="calificacion (0)"
-                android:textSize="14sp"
-                android:layout_columnSpan="2"
-                android:layout_columnWeight="1"/>
-
-            <Button
-                android:id="@+id/deleteProduct"
-                android:layout_marginTop="10dp"
-                android:text="Eliminar producto"/>
         </GridLayout>
     </LinearLayout>
 

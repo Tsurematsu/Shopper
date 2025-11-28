@@ -33,7 +33,7 @@ public class AuxMain {
 
         String[] posiblesServidores = {
                 "http://192.168.0.35:8080", //Conexion de prueba en parcial
-                "http://192.168.80.23:8080", // Conexion de test PC de mesa
+                "http://192.168.80.14:8080", // Conexion de test PC de mesa
                 "http://10.10.23.32:8080", // Conexion PORTABLE
         };
 

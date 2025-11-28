@@ -86,6 +86,10 @@ public class AcopladorAdmin {
                         ActionDelete.accept(newContinue);
                     });
 
+                    itemView.setOnClickListener(e->{
+                        ActionClick.accept(producto);
+                    });
+
                     contenedorItems.addView(itemView);
                 }
 

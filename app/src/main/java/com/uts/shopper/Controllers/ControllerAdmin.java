@@ -39,8 +39,25 @@ public class ControllerAdmin {
         });
     }
 
+    public void setImageUrl(String serverPath, ImageView elementImage, AppCompatActivity parent){
+        try{
+            Glide.with(parent)
+                    .load(serverPath)
+                    .placeholder(R.drawable.icon_download)
+                    .error(R.drawable.icon_download)
+                    .centerCrop()
+                    .into(elementImage);
+        } catch (Exception e) {
+
+        }
+    }
+
     public void addProduct(ModelProducto producto, Runnable succes){
         Fetch.PostMap(producto, "/api/productos/addproduct", Response->succes.run());
+    }
+
+    public void updateProduct(String id, ModelProducto producto, Runnable succes){
+        Fetch.PostMap(producto, "/api/productos/updateProduct/" + id, Response->succes.run());
     }
 
     public void removeProduct(String id, Runnable succes){
@@ -77,6 +94,28 @@ public class ControllerAdmin {
                     modelProductos.add(onProduct);
                 }
                 success.accept(modelProductos);
+            });
+        } catch (Exception e) {
+            Log.e("APP_API_DEBUG", "ControllerAdmin ->" + e.getMessage());
+        }
+    }
+
+    public void getProduct(String id, Consumer<ModelProducto> success){
+        try {
+            Fetch.GetMap("/api/productos/getProduct/" + id, result->{
+                double cantidad_double = Double.parseDouble(String.valueOf(result.get("cantidad")));
+                int cantidad = (int) Math.floor(cantidad_double);
+                ModelProducto producto = new ModelProducto(
+                        String.valueOf(result.get("titulo")),
+                        String.valueOf(result.get("descripcion")),
+                        String.valueOf(result.get("imagen_url")),
+                        Double.parseDouble(String.valueOf(result.get("precio_unitario"))),
+                        Double.parseDouble(String.valueOf(result.get("costo_envio"))),
+                        cantidad,
+                        Double.parseDouble(String.valueOf(result.get("calificacion"))),
+                        id
+                );
+                success.accept(producto);
             });
         } catch (Exception e) {
             Log.e("APP_API_DEBUG", "ControllerAdmin ->" + e.getMessage());
