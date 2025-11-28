@@ -69,11 +69,6 @@
                 <include layout="@layout/component_admin_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
-                <include layout="@layout/component_admin_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
             </LinearLayout>
 
         </ScrollView>
