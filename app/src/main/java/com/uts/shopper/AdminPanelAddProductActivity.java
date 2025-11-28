@@ -1,6 +1,5 @@
 package com.uts.shopper;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -61,13 +59,13 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
             String idProd = (String) getIntent().getStringExtra("ID_PRODUCTO");
             onUpdate(idProd);
         }else{
-            onCrate();
+            onCreate();
         }
 
         TextView cancelarButton = findViewById(R.id.cancelarButton);
-        cancelarButton.setOnClickListener(e->{
-            finish();
-        });
+        ImageView volver = findViewById(R.id.volver);
+        cancelarButton.setOnClickListener(e->this.finish());
+        volver.setOnClickListener(e->this.finish());
 
     }
     private AtomicReference<String> uploadImage(){
@@ -122,6 +120,7 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
         });
 
         TextView addToProduct = findViewById(R.id.addToProduct);
+        addToProduct.setText("Aplicar cambios");
         addToProduct.setOnClickListener(e->{
             ModelProducto updateProducto = getDataForm(imagenUrl);
             controllerAdmin.updateProduct(id, updateProducto, this::finish);
@@ -129,7 +128,7 @@ public class AdminPanelAddProductActivity extends AppCompatActivity {
 
     }
 
-    private void onCrate(){
+    private void onCreate(){
         AtomicReference<String> imagenUrl = uploadImage();
         TextView addToProduct = findViewById(R.id.addToProduct);
         addToProduct.setOnClickListener(e->{
